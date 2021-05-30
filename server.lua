@@ -78,6 +78,14 @@ end)
 RegisterServerEvent("utk_fh:startLoot")
 AddEventHandler("utk_fh:startLoot", function(data, name, players)
     local _source = source
+	local src = source
+	local Player = QBCore.Functions.GetPlayer(src)
+	function RandomNumber()
+		return math.random(0,1)
+	end
+	
+	Player.Functions.AddItem("security_card_02", RandomNumber())
+    TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['security_card_02'], "add")
 
     for i = 1, #players, 1 do
         TriggerClientEvent("utk_fh:startLoot_c", players[i], data, name)
@@ -98,7 +106,7 @@ AddEventHandler("utk_fh:rewardCash", function()
 	local Player = QBCore.Functions.GetPlayer(src)
     --local reward = math.random(UTK.mincash, UTK.maxcash)
 	function RandomNumber()
-	return math.random(1,25)
+	return math.random(0,3)
 	end
 
 
