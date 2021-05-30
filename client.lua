@@ -387,9 +387,9 @@ AddEventHandler("utk_fh:reset", function(name, data)
         LootCheck[name][i] = false
     end
     Check[name] = false
-    QBCore.Functions.Notify("VAULT DOOR WILL CLOSE IN 30 SECONDS!", 'error')
+    QBCore.Functions.Notify("De kluis zal in 30 seconden sluiten!", 'error')
     Citizen.Wait(30000)
-    QBCore.Functions.Notify("VAULT DOOR CLOSING!", 'error')
+    QBCore.Functions.Notify("KLUIS GESLOTEN", 'error')
     TriggerServerEvent("utk_fh:toggleVault", name, true)
     TriggerEvent("utk_fh:cleanUp", data, name)
 end)
@@ -423,13 +423,13 @@ AddEventHandler("utk_fh:startheist", function(data, name)
     ClearPedTasksImmediately(ped)
     disableinput = false
     Citizen.Wait(1000)
-    Process(UTK.hacktime, "Hack in Progress")
-    QBCore.Functions.Notify("Hacking complete!", 'error')
+    Process(UTK.hacktime, "Bezig met Hacken")
+    QBCore.Functions.Notify("Hacking Geslaagd!", 'error')
     PlaySoundFrontend(-1, "ATM_WINDOW", "HUD_FRONTEND_DEFAULT_SOUNDSET")
     TriggerServerEvent("utk_fh:toggleVault", name, false)
     startdstcheck = true
     currentname = name
-    QBCore.Functions.Notify("You have 2 minutes until the security system activation.")
+    QBCore.Functions.Notify("Je hebt 200 seconden voordat de kluis weer sluit")
     SpawnTrolleys(data, name)
 end)
 

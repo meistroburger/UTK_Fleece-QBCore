@@ -1,6 +1,6 @@
 UTK = {}
-UTK.timer = 120 -- countdown to secure lock in seconds (time needed to pass to door to be closed back)
-UTK.hacktime = 1000 -- first door open delay to make time for police to arrive and roleplay in miliseconds (I highly recommend to leave it be (2.5 min default))
+UTK.timer = 200 -- countdown to secure lock in seconds (time needed to pass to door to be closed back)
+UTK.hacktime = 2500 -- first door open delay to make time for police to arrive and roleplay in miliseconds (I highly recommend to leave it be (2.5 min default))
 UTK.maxcash = 7500
 UTK.mincash = 3000
 UTK.black = true -- enable this if you want blackmoney as a reward
