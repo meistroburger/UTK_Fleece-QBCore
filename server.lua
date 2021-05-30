@@ -90,18 +90,23 @@ AddEventHandler("utk_fh:stopHeist", function(name)
     TriggerClientEvent("utk_fh:stopHeist_c", -1, name)
 end)
 
+
 RegisterServerEvent("utk_fh:rewardCash")
 AddEventHandler("utk_fh:rewardCash", function()
 	local src = source
     --local xPlayer = QBCore.Functions.GetPlayer(source)
 	local Player = QBCore.Functions.GetPlayer(src)
     --local reward = math.random(UTK.mincash, UTK.maxcash)
+	function RandomNumber()
+	return math.random(1,25)
+	end
+
 
     if UTK.black then
-		Player.Functions.AddItem("markedbills", 3)
+		Player.Functions.AddItem("markedbills", RandomNumber())
         TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['markedbills'], "add")
     else
-		Player.Functions.AddItem("markedbills", 3)
+		Player.Functions.AddItem("markedbills", RandomNumber())
         TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['markedbills'], "add")
     end
 end)
