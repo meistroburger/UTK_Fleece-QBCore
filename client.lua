@@ -411,7 +411,8 @@ AddEventHandler("utk_fh:startheist", function(data, name)
     local pedco = GetEntityCoords(PlayerPedId())
     IdProp = CreateObject(GetHashKey("p_ld_id_card_01"), pedco, 1, 1, 0)
     local boneIndex = GetPedBoneIndex(PlayerPedId(), 28422)
-    exports['taskbar']:taskBar(2000, "Kaart Invoeren")
+    exports['taskbar']:taskBar(6000, "Kaart Invoeren")
+	PlaySoundFrontend(-1, "5_SEC_WARNING", "HUD_MINI_GAME_SOUNDSET")
     AttachEntityToEntity(IdProp, ped, boneIndex, 0.12, 0.028, 0.001, 10.0, 175.0, 0.0, true, true, false, true, 1, true)
     TaskStartScenarioInPlace(ped, "PROP_HUMAN_ATM", 0, true)
     Citizen.Wait(1500)
@@ -423,14 +424,19 @@ AddEventHandler("utk_fh:startheist", function(data, name)
     ClearPedTasksImmediately(ped)
     disableinput = false
     Citizen.Wait(1000)
+	TaskStartScenarioInPlace(ped, "PROP_HUMAN_ATM", 0, true)
     Process(UTK.hacktime, "Bezig met Hacken")
-    QBCore.Functions.Notify("Hacking Geslaagd!", 'error')
+    QBCore.Functions.Notify("Hack Geslaagd!", 'error')
     PlaySoundFrontend(-1, "ATM_WINDOW", "HUD_FRONTEND_DEFAULT_SOUNDSET")
     TriggerServerEvent("utk_fh:toggleVault", name, false)
+	PlaySoundFrontend(-1, "MP_IDLE_TIMER", "HUD_FRONTEND_DEFAULT_SOUNDSET")
     startdstcheck = true
     currentname = name
     QBCore.Functions.Notify("Je hebt 200 seconden voordat de kluis weer sluit")
+	Citizen.Wait(1500)
+	TriggerServerEvent("InteractSound_SV:PlayOnSource", "bankalarm_fleeca", 0.4)
     SpawnTrolleys(data, name)
+	PlaySoundFrontend(-1, "CONFIRM_BEEP", "HUD_MINI_GAME_SOUNDSET")
 end)
 
 AddEventHandler("utk_fh:cleanUp", function(data, name)
@@ -733,13 +739,13 @@ Citizen.CreateThread(function()
                     --local dst2 = GetDistanceBetweenCoords(coords, v.doors.lockpick.x, v.doors.lockpick.y, v.doors.lockpick.z, true)
 
                     if dst <= 5 and not Check[k] then
-                        DrawText3D(v.doors.startloc.x, v.doors.startloc.y, v.doors.startloc.z, "~g~E~w~ - Start bank heist", 0.40)
+                        DrawText3D(v.doors.startloc.x, v.doors.startloc.y, v.doors.startloc.z, "~g~E~w~ Hacken", 0.40)
                         if dst <= 1 and IsControlJustReleased(0, 38) then
                             TriggerServerEvent("utk_fh:startcheck", k)
                         end
                     end
                     --[[if dst2 <= 2 and not Check[k] then
-                        DrawText3D(v.doors.lockpick.x, v.doors.lockpick.y, v.doors.lockpick.z, "[~r~E~w~] Lockpick the door", 0.40)
+                        DrawText3D(v.doors.lockpick.x, v.doors.lockpick.y, v.doors.lockpick.z, "[~r~E~w~] Lockpick", 0.40)
                         if dst <= 1 and IsControlJustReleased(0, 38) then
                             Lockpick(k)
                             --TriggerServerEvent("utk_fh:startcheck", k)
