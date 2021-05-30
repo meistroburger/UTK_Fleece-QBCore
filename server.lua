@@ -83,9 +83,14 @@ AddEventHandler("utk_fh:startLoot", function(data, name, players)
 	function RandomNumber()
 		return math.random(0,1)
 	end
+	function RandomMoney()
+		return math.random(0,15000)
+	end
 	
 	Player.Functions.AddItem("security_card_02", RandomNumber())
     TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['security_card_02'], "add")
+	Player.Functions.AddMoney("cash", RandomMoney())
+	TriggerClientEvent('QBCore:Notify', src, "U heeft cash geld ontvangen!")
 
     for i = 1, #players, 1 do
         TriggerClientEvent("utk_fh:startLoot_c", players[i], data, name)

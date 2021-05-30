@@ -411,7 +411,7 @@ AddEventHandler("utk_fh:startheist", function(data, name)
     local pedco = GetEntityCoords(PlayerPedId())
     IdProp = CreateObject(GetHashKey("p_ld_id_card_01"), pedco, 1, 1, 0)
     local boneIndex = GetPedBoneIndex(PlayerPedId(), 28422)
-    exports['taskbar']:taskBar(2000, "Using Card")
+    exports['taskbar']:taskBar(2000, "Kaart Invoeren")
     AttachEntityToEntity(IdProp, ped, boneIndex, 0.12, 0.028, 0.001, 10.0, 175.0, 0.0, true, true, false, true, 1, true)
     TaskStartScenarioInPlace(ped, "PROP_HUMAN_ATM", 0, true)
     Citizen.Wait(1500)
@@ -475,7 +475,7 @@ function SecondDoor(data, key)
 
     AttachEntityToEntity(IdProp2, ped, boneIndex, 0.12, 0.028, 0.001, 10.0, 175.0, 0.0, true, true, false, true, 1, true)
     TaskStartScenarioInPlace(ped, "PROP_HUMAN_ATM", 0, true)
-    exports['taskbar']:taskBar(2000, "Using Card")
+    exports['taskbar']:taskBar(2000, "Kaart Invoeren")
     Citizen.Wait(1500)
     DetachEntity(IdProp2, false, false)
     SetEntityCoords(IdProp2, data.prop.second.coords, 0.0, 0.0, 0.0, false)
@@ -657,7 +657,7 @@ Citizen.CreateThread(function()
                             done = true
                             return SecondDoor(UTK.Banks[currentname], currentname)
                         elseif not result then
-                            QBCore.Functions.Notify("You don't have the Secure ID Card.", 'error')
+                            QBCore.Functions.Notify("U heeft niet de juiste spullen", 'error')
                         end
                     end)
                 end
