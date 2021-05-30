@@ -95,19 +95,13 @@ AddEventHandler("utk_fh:rewardCash", function()
 	local src = source
     --local xPlayer = QBCore.Functions.GetPlayer(source)
 	local Player = QBCore.Functions.GetPlayer(src)
-    local reward = math.random(UTK.mincash, UTK.maxcash)
+    --local reward = math.random(UTK.mincash, UTK.maxcash)
 
     if UTK.black then
-        -- xPlayer.Functions.AddMoney("cash", reward)
-		-- xPlayer.Functions.AddItem ("markedbills", reward)
-		
-		Player.Functions.AddItem("markedbills", 1)
+		Player.Functions.AddItem("markedbills", 3)
         TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['markedbills'], "add")
     else
-        -- xPlayer.Functions.AddMoney('cash', reward)
-		-- xPlayer.Functions.AddItem ("markedbills", reward)
-		
-		Player.Functions.AddItem("markedbills", 1)
+		Player.Functions.AddItem("markedbills", 3)
         TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['markedbills'], "add")
     end
 end)
